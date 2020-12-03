@@ -24,6 +24,20 @@ fn solve_part_1(lines : &Vec<PassLine>) -> u32 {
     cnt
 }
 
+fn solve_part_2(lines : &Vec<PassLine>) -> u32 {
+    let mut cnt = 0;
+    for line in lines {
+        let pol = &line.pol;
+        let ch : &char = &pol.letter.chars().next().unwrap();
+
+        let mut matches = 0;
+        if &line.pass.chars().skip(pol.min as usize).next().unwrap() == ch { matches += 1 ; } 
+        if &line.pass.chars().skip(pol.max as usize).next().unwrap() == ch { matches += 1 ; } 
+        if matches == 1 { cnt += 1; }
+    }
+    cnt
+}
+
 fn main() -> io::Result<()> {
     let file = File::open("/home/rutger/old_home/arch-rutger/Programming/advent_of_code_2020/input/day2_1.txt")?;
     let reader = BufReader::new(file);
@@ -55,6 +69,9 @@ fn main() -> io::Result<()> {
 
     let result = solve_part_1(&passlines);
     println!("Result part 1: {}", result);
+
+    let result = solve_part_2(&passlines);
+    println!("Result part 2: {}", result);
 
     Ok(())
 }
