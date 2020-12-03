@@ -1,7 +1,10 @@
 use std::fs::File;
 use std::io::{self, prelude::*, BufReader};
 
-fn solve(nrs: &Vec<u32>) -> Option<u32> {
+type ReceiptEntry = u32;
+type Receipt = Vec<ReceiptEntry>;
+
+fn solve(nrs: &Receipt) -> Option<ReceiptEntry> {
     for i in nrs {
         if nrs.contains(&(2020 - i)) {
             return Some(i * (2020 - i));
@@ -10,7 +13,7 @@ fn solve(nrs: &Vec<u32>) -> Option<u32> {
     None
 } 
 
-fn solve_part_2(nrs: &Vec<u32>) -> Option<u32> {
+fn solve_part_2(nrs: &Receipt) -> Option<ReceiptEntry> {
     let l = nrs.len();
     for (i1, n1) in nrs[0..(l - 3)].iter().enumerate() {
         for (i2, n2) in nrs[(i1 + 1)..(l - 2)].iter().enumerate() {
@@ -30,7 +33,7 @@ fn solve_part_2(nrs: &Vec<u32>) -> Option<u32> {
 fn main() -> io::Result<()> {
     let file = File::open("/home/rutger/old_home/arch-rutger/Programming/advent_of_code_2020/input/day1_1.txt")?;
     let reader = BufReader::new(file);
-    let mut nrs : Vec<u32> = Vec::new();
+    let mut nrs : Receipt = Vec::new();
 
     for line in reader.lines() {
         let x = match line?.parse() {
