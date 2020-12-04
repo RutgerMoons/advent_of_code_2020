@@ -1,0 +1,124 @@
+Valid  hcl:#c0946f byr:1933 eyr:2025 pid:517067213 hgt:173cm ecl:hzl iyr:2018
+Valid  iyr:2013 pid:862607211 eyr:2020 hgt:174cm byr:1990 ecl:blu hcl:#888785
+Valid  ecl:grn byr:1955 pid:608098408 eyr:2027 iyr:2020 hcl:#b6652a cid:264 hgt:181cm
+Valid  pid:075417314 hcl:#b6652a byr:1957 iyr:2011 hgt:154cm eyr:2025 ecl:amb
+Valid  hgt:153cm hcl:#6b5442 pid:065240897 byr:1932 cid:196 ecl:blu eyr:2028 iyr:2019
+Valid  eyr:2024 ecl:amb hcl:#866857 byr:1922 pid:496904942 hgt:164cm iyr:2020
+Valid  ecl:amb hcl:#d09c0f iyr:2015 hgt:156cm eyr:2026 byr:1962 pid:086120872
+Valid  cid:125 pid:837849996 byr:1958 ecl:brn hgt:166cm hcl:#ceb3a1 eyr:2028 iyr:2012
+Valid  hgt:63in ecl:blu byr:1940 iyr:2012 eyr:2029 hcl:#7d3b0c pid:163033394
+Valid  hcl:#cfa07d ecl:oth byr:1948 eyr:2021 pid:719690182 hgt:179cm iyr:2020
+Valid  byr:1939 cid:266 eyr:2026 iyr:2017 hcl:#f116d2 ecl:hzl pid:522421825 hgt:68in
+Valid  eyr:2027 hcl:#a97842 pid:997937480 hgt:61in iyr:2019 byr:1921 ecl:grn
+Valid  hgt:163cm pid:912318455 iyr:2016 byr:1988 ecl:brn hcl:#a97842 cid:221 eyr:2029
+Valid  cid:70 hcl:#c0946f pid:961507902 byr:1949 ecl:grn iyr:2017 eyr:2029 hgt:69in
+Valid  hgt:169cm ecl:amb iyr:2013 pid:496169901 byr:1943 eyr:2028 hcl:#ceb3a1 cid:249
+Valid  pid:761333244 hgt:180cm iyr:2017 hcl:#18171d eyr:2021 byr:1983 cid:67 ecl:oth
+Valid  hcl:#866857 hgt:162cm pid:483774485 iyr:2010 byr:1946 eyr:2028 ecl:gry
+Valid  hgt:71in ecl:blu eyr:2026 hcl:#18171d byr:1981 iyr:2017 pid:698636544
+Valid  eyr:2021 byr:1957 ecl:brn pid:365378126 cid:93 iyr:2019 hcl:#18171d hgt:179cm
+Valid  byr:1976 pid:059341891 hgt:174cm ecl:oth eyr:2029 iyr:2017 hcl:#733820
+Valid  iyr:2018 hcl:#ceb3a1 hgt:188cm cid:308 pid:792826885 byr:1948 ecl:blu eyr:2028
+Valid  iyr:2017 cid:94 hcl:#95c7dc pid:231757803 eyr:2022 byr:1992 hgt:153cm ecl:amb
+Valid  eyr:2027 iyr:2011 hgt:186cm ecl:brn pid:996347346 hcl:#866857 byr:1960
+Valid  eyr:2030 hcl:#733820 iyr:2016 pid:558470391 byr:1936 ecl:oth hgt:185cm
+Valid  pid:019195245 ecl:grn hgt:171cm byr:1978 iyr:2011 eyr:2022 hcl:#733820 cid:134
+Valid  ecl:hzl pid:715816358 hgt:69in iyr:2014 hcl:#623a2f byr:1996 eyr:2027
+Valid  ecl:gry byr:1950 hcl:#18171d hgt:168cm iyr:2020 pid:677187333 eyr:2027
+Valid  cid:269 byr:1966 iyr:2011 pid:905940527 eyr:2023 hgt:190cm ecl:brn hcl:#ceb3a1
+Valid  eyr:2027 pid:454627395 ecl:brn hcl:#ceb3a1 cid:302 hgt:184cm byr:1959 iyr:2015
+Valid  iyr:2011 eyr:2028 hgt:166cm hcl:#733820 byr:1938 ecl:blu pid:857984986
+Valid  ecl:blu hcl:#fffffd eyr:2025 hgt:66in pid:979788527 byr:1957 iyr:2013
+Valid  ecl:grn pid:279357265 iyr:2019 eyr:2021 byr:1953 hgt:177cm hcl:#c0946f
+Valid  pid:080462937 ecl:blu hcl:#866857 cid:102 iyr:2013 eyr:2025 byr:1975 hgt:64in
+Valid  iyr:2016 eyr:2028 cid:125 byr:1979 hcl:#866857 ecl:brn hgt:173cm pid:814947616
+Valid  hgt:152cm byr:1982 iyr:2013 ecl:blu hcl:#341e13 eyr:2026 pid:440841976
+Valid  iyr:2019 ecl:blu pid:553456616 hcl:#733820 hgt:160cm byr:1932 eyr:2030
+Valid  byr:1980 hgt:169cm hcl:#7d3b0c cid:312 iyr:2010 eyr:2026 pid:028550304 ecl:grn
+Valid  cid:316 iyr:2016 eyr:2026 hcl:#79ff1d hgt:65in byr:1997 pid:215466710 ecl:oth
+Valid  cid:213 byr:1983 hcl:#888785 iyr:2016 pid:767747981 eyr:2025 ecl:hzl hgt:168cm
+Valid  hcl:#6b5442 ecl:amb eyr:2028 cid:104 hgt:159cm pid:446429120 iyr:2012 byr:1938
+Valid  byr:1940 hgt:178cm ecl:oth hcl:#ceb3a1 pid:845683663 iyr:2015 eyr:2024
+Valid  byr:1940 pid:496262233 hgt:184cm hcl:#b6652a ecl:grn cid:152 iyr:2012 eyr:2029
+Valid  hgt:185cm pid:455744229 byr:1954 eyr:2022 ecl:gry hcl:#6b5442 iyr:2012
+Valid  hcl:#7a12b4 pid:223424149 ecl:hzl hgt:175cm byr:1930 iyr:2010 eyr:2028
+Valid  hcl:#c0946f pid:633476454 eyr:2026 iyr:2011 byr:1934 hgt:186cm cid:289 ecl:gry
+Valid  hcl:#fffffd pid:376300524 hgt:155cm byr:1964 iyr:2017 eyr:2021 ecl:grn
+Valid  eyr:2027 hgt:170cm iyr:2010 hcl:#c0946f ecl:grn pid:415726530 byr:1985
+Valid  iyr:2015 pid:933689314 hgt:162cm ecl:amb cid:122 eyr:2021 hcl:#6b5442 byr:1973
+Valid  eyr:2026 hgt:172cm iyr:2012 ecl:brn hcl:#733820 pid:004474632 byr:2000
+Valid  iyr:2010 pid:182884251 hcl:#18171d hgt:154cm eyr:2020 byr:1926 ecl:oth
+Valid  iyr:2011 hgt:177cm cid:117 byr:1976 ecl:gry hcl:#623a2f eyr:2030 pid:134592046
+Valid  hcl:#cfa07d ecl:oth hgt:182cm eyr:2021 pid:612583941 byr:1983 iyr:2019
+Valid  byr:1922 hcl:#602927 hgt:161cm ecl:gry eyr:2020 pid:190170808 iyr:2013
+Valid  pid:123524366 byr:1935 hgt:156cm hcl:#7d3b0c iyr:2020 ecl:brn eyr:2020
+Valid  hcl:#888785 hgt:172cm ecl:oth pid:500711541 eyr:2027 byr:1931 iyr:2012
+Valid  eyr:2021 iyr:2010 pid:178773264 hgt:157cm byr:1965 hcl:#bb7bcf ecl:amb
+Valid  byr:1921 iyr:2011 pid:146088688 eyr:2023 hcl:#15ed24 hgt:183cm ecl:brn
+Valid  eyr:2024 hcl:#cfa07d pid:858807920 cid:293 hgt:157cm ecl:hzl iyr:2013 byr:1984
+Valid  ecl:blu hgt:193cm cid:73 hcl:#18171d eyr:2026 iyr:2016 pid:124151812 byr:1945
+Valid  ecl:amb iyr:2018 pid:214555737 hgt:157cm eyr:2028 byr:1925 hcl:#866857
+Valid  hgt:175cm byr:1926 hcl:#cfa07d eyr:2029 ecl:gry pid:325039730 iyr:2017
+Valid  cid:101 hgt:166cm byr:1986 ecl:amb hcl:#7d3b0c iyr:2013 pid:413769688 eyr:2024
+Valid  pid:565831038 ecl:amb hgt:155cm hcl:#fffffd cid:335 iyr:2016 eyr:2029 byr:1997
+Valid  hcl:#efcc98 iyr:2012 pid:020039675 eyr:2021 byr:1974 hgt:156cm ecl:hzl
+Valid  pid:085461475 byr:1962 iyr:2020 hcl:#623a2f eyr:2024 cid:80 ecl:brn hgt:154cm
+Valid  ecl:oth hgt:156cm iyr:2016 hcl:#6b5442 byr:1973 eyr:2021 pid:539898580
+Valid  cid:167 hgt:179cm iyr:2017 eyr:2021 pid:756797571 byr:1949 ecl:brn hcl:#a97842
+Valid  hcl:#341e13 iyr:2014 byr:1953 pid:188326193 ecl:gry hgt:189cm cid:283 eyr:2030
+Valid  byr:1975 pid:092061576 hgt:73in eyr:2023 ecl:brn cid:227 hcl:#5e9d91 iyr:2011
+Valid  hgt:168cm hcl:#c0946f pid:599500784 byr:1930 eyr:2023 ecl:hzl cid:113 iyr:2013
+Valid  pid:352943968 eyr:2025 byr:1980 iyr:2014 ecl:gry hcl:#c0946f hgt:193cm
+Valid  pid:328621931 cid:310 hgt:170cm hcl:#733820 byr:1955 iyr:2016 eyr:2028 ecl:hzl
+Valid  hcl:#866857 pid:095858739 byr:1956 iyr:2018 hgt:193cm ecl:hzl eyr:2029
+Valid  byr:1989 ecl:brn pid:769582914 eyr:2026 cid:218 iyr:2020 hcl:#866857 hgt:184cm
+Valid  hgt:166cm hcl:#c0946f pid:412146401 iyr:2011 eyr:2022 byr:1938 ecl:brn
+Valid  ecl:brn cid:95 byr:1981 eyr:2030 hcl:#efcc98 pid:777041035 hgt:152cm iyr:2011
+Valid  cid:339 hgt:156cm ecl:brn iyr:2013 byr:1951 hcl:#efcc98 eyr:2026 pid:863566946
+Valid  pid:193073684 ecl:grn byr:1962 iyr:2014 hcl:#cfa07d hgt:189cm cid:321 eyr:2029
+Valid  byr:1959 hcl:#b6652a eyr:2026 hgt:159cm pid:815014918 iyr:2011 ecl:amb
+Valid  iyr:2017 hgt:182cm hcl:#a97842 eyr:2023 ecl:grn pid:656177536 byr:1973
+Valid  cid:169 pid:922622614 byr:1942 hcl:#ceb3a1 hgt:169cm eyr:2024 ecl:gry iyr:2017
+Valid  cid:219 ecl:grn hgt:156cm byr:1998 eyr:2021 iyr:2017 hcl:#ceb3a1 pid:450186263
+Valid  ecl:amb hgt:179cm pid:768428582 iyr:2010 eyr:2023 byr:1952 hcl:#fffffd
+Valid  eyr:2024 hgt:193cm iyr:2017 pid:469033795 byr:1979 hcl:#18171d cid:67 ecl:amb
+Valid  iyr:2016 byr:1937 pid:798267514 hgt:155cm hcl:#866857 eyr:2026 ecl:oth
+Valid  hgt:172cm hcl:#866857 iyr:2018 pid:662186551 byr:1996 eyr:2025 ecl:amb
+Valid  ecl:oth pid:488050418 byr:1927 hcl:#a97842 hgt:153cm iyr:2013 eyr:2024
+Valid  pid:788908662 hcl:#602927 eyr:2029 ecl:oth byr:1930 iyr:2020 hgt:179cm
+Valid  cid:157 pid:097910554 byr:1999 hgt:159cm hcl:#6b5442 ecl:blu eyr:2024 iyr:2010
+Valid  pid:040606106 eyr:2030 hgt:188cm byr:1969 iyr:2012 hcl:#ceb3a1 ecl:amb
+Valid  iyr:2015 pid:529736732 ecl:brn hgt:176cm eyr:2026 byr:1952 hcl:#6b5442
+Valid  hcl:#c0946f cid:323 pid:303966428 iyr:2019 eyr:2027 hgt:170cm byr:2001 ecl:brn
+Valid  pid:193678728 hgt:72in eyr:2027 iyr:2015 byr:1951 ecl:gry hcl:#18171d
+Valid  byr:1926 pid:717704850 hcl:#623a2f eyr:2022 hgt:64in iyr:2018 ecl:gry
+Valid  eyr:2023 byr:1954 hgt:169cm ecl:hzl iyr:2010 pid:116868997 hcl:#18171d
+Valid  ecl:hzl byr:1965 hcl:#a97842 iyr:2011 pid:506354451 hgt:172cm eyr:2029
+Valid  iyr:2011 byr:1931 hgt:183cm hcl:#284f26 cid:306 ecl:amb eyr:2021 pid:977533079
+Valid  eyr:2027 iyr:2011 ecl:gry byr:1993 pid:272334781 hgt:161cm hcl:#9a35b6
+Valid  eyr:2026 hcl:#602927 ecl:blu pid:212300161 byr:1946 cid:193 iyr:2020 hgt:157cm
+Valid  pid:538594567 byr:1976 eyr:2027 hcl:#efcc98 iyr:2011 hgt:154cm ecl:oth
+Valid  hcl:#c0946f cid:55 byr:1963 ecl:blu hgt:161cm pid:547120453 iyr:2015 eyr:2021
+Valid  eyr:2030 pid:581963885 hcl:#64cb23 ecl:blu byr:1928 hgt:181cm iyr:2018
+Valid  iyr:2015 ecl:gry hgt:159cm eyr:2027 hcl:#ceb3a1 byr:1925 pid:715902111 cid:149
+Valid  iyr:2018 hcl:#623a2f eyr:2020 hgt:162cm ecl:grn cid:135 byr:1922 pid:373216777
+Valid  eyr:2020 pid:749899012 hcl:#888785 ecl:brn iyr:2010 cid:225 hgt:172cm byr:1972
+Valid  iyr:2020 hgt:178cm ecl:grn hcl:#18171d pid:613792489 cid:240 eyr:2028 byr:1972
+Valid  iyr:2015 byr:1938 eyr:2026 cid:113 ecl:grn pid:846231640 hgt:161cm hcl:#b6652a
+Valid  ecl:gry hcl:#ceb3a1 byr:1956 cid:338 pid:936012518 hgt:62in eyr:2029 iyr:2016
+Valid  pid:730866353 ecl:brn byr:1986 iyr:2014 hgt:190cm eyr:2021 hcl:#a97842 cid:126
+Valid  hgt:188cm ecl:hzl pid:179001863 iyr:2016 eyr:2029 hcl:#341e13 byr:1932
+Valid  hgt:66in pid:617518313 iyr:2013 byr:1977 hcl:#b6652a ecl:brn eyr:2025
+Valid  pid:787861420 iyr:2014 hcl:#623a2f hgt:61in ecl:oth cid:78 eyr:2022 byr:1975
+Valid  ecl:hzl iyr:2017 eyr:2028 hcl:#602927 byr:1958 pid:985208714 hgt:160cm
+Valid  byr:2002 iyr:2013 hcl:#341e13 pid:188110633 ecl:gry hgt:169cm eyr:2025
+Valid  byr:1981 eyr:2028 hcl:#341e13 ecl:amb hgt:160cm cid:121 iyr:2015 pid:963848397
+Valid  pid:857722366 byr:1975 eyr:2027 ecl:grn iyr:2019 hcl:#0afad1 hgt:66in
+Valid  cid:66 eyr:2024 hcl:#efcc98 byr:2002 iyr:2010 hgt:176cm pid:697153153 ecl:amb
+Valid  iyr:2019 hcl:#cfa07d ecl:blu pid:695914972 eyr:2024 hgt:158cm byr:1943
+Valid  hcl:#623a2f ecl:oth byr:1974 iyr:2018 hgt:161cm eyr:2029 pid:6826285172
+Valid  hgt:181cm hcl:#888785 iyr:2013 pid:634152817 byr:1982 cid:245 ecl:grn eyr:2021
+Valid  ecl:brn pid:737531770 iyr:2010 eyr:2020 byr:1929 hgt:189cm hcl:#c0946f
+Valid  pid:976934668 cid:61 eyr:2020 iyr:2020 hgt:76in byr:1927 ecl:amb hcl:#e05ee3
+Valid  iyr:2010 pid:661168409 hcl:#53c696 hgt:186cm ecl:amb byr:1960 eyr:2029
+Valid  byr:1967 ecl:oth eyr:2021 hcl:#602927 iyr:2014 pid:274974402 hgt:183cm

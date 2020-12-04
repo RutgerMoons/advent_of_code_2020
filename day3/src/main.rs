@@ -24,7 +24,7 @@ fn solve_part_2(landscape: &Vec<String>) -> u64 {
     total * x
 }
 
-fn solve(landscape: &Vec<String>, steps_down: usize, steps_right: usize) -> u64 {
+fn solve(landscape: &Vec<String>, steps_down: usize, steps_right: usize) -> u {
     let mut col : usize = 0;
     let mut nb_trees = 0;
     let mut line_length = 1;
