@@ -3,7 +3,7 @@ use std::io::{self, prelude::*, BufReader};
 use regex::Regex;
 use std::collections::HashSet;
 
-#[derive(Debug)]
+#[derive(Debug,Clone,Copy)]
 enum Op {
     Acc(i32),
     Jmp(i32),
@@ -21,7 +21,7 @@ enum ConsoleState {
 struct Console {
     acc : i32,
     ip  : usize, // instruction pointer
-    consoleState : ConsoleState,
+    console_state : ConsoleState,
 }
 
 impl Default for Console {
@@ -29,7 +29,7 @@ impl Default for Console {
         Console {
             acc : 0,
             ip : 0,
-            consoleState : ConsoleState::Running,
+            console_state : ConsoleState::Running,
         }
     }
 }
@@ -54,25 +54,47 @@ impl Console {
     fn simulate_program(&mut self, program : &Vec<Op>) {
         let mut visited: HashSet<usize> = HashSet::new();
 
-        while self.consoleState == ConsoleState::Running {
+        while self.console_state == ConsoleState::Running {
             let instr = &program[self.ip];
             visited.insert(self.ip);
             self.simulate_step(instr);
 
             if self.ip >= program.len() {
-                self.consoleState = ConsoleState::Finished;
+                self.console_state = ConsoleState::Finished;
             }
 
             if visited.contains(&self.ip) {
-                self.consoleState = ConsoleState::InfiniteLoop;
+                self.console_state = ConsoleState::InfiniteLoop;
             }
         }
     }
 }
 
-fn solve_part_1(mut cons : Console, program: &Vec<Op>) -> i32 {
+fn solve_part_1(program: &Vec<Op>) -> i32 {
+    let mut cons = Console { .. Default::default() };
     cons.simulate_program(program);
     cons.acc
+}
+
+fn solve_part_2( orig_program: &Vec<Op>) -> i32 {
+    let mut work_program : Vec<Op> = orig_program.to_vec();
+    loop {
+        for i in 0..orig_program.len() {
+            let instr = work_program[i];
+            match instr {
+                Op::Acc(_) => continue,
+                Op::Jmp(x) => work_program[i] = Op::Nop(x),
+                Op::Nop(x) => work_program[i] = Op::Jmp(x),
+            }
+            let mut cons = Console::default();
+            cons.simulate_program(&work_program);
+            if cons.console_state == ConsoleState::Finished {
+                return cons.acc;
+            } else {
+                work_program[i] = instr;
+            }
+        }
+    }
 }
 
 impl From<(&str, i32)> for Op {
@@ -101,12 +123,11 @@ fn main() -> io::Result<()> {
         panic!();
     }).collect();
 
-    let cons = Console {
-        .. Default::default()
-    };
-
-    let result = solve_part_1(cons, &instructions);
+    let result = solve_part_1(&instructions);
     println!("Part 1: {}", result);
+
+    let result = solve_part_2(&instructions);
+    println!("Part 2: {}", result);
 
     Ok(())
 }
