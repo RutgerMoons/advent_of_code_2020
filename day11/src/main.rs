@@ -25,34 +25,111 @@ impl Board for Chairs {
             for j in 0..nb_cols {
                 if next_gen[i][j] == Pos::Floor { continue; }
                 let nb_taken = self.get_nb_taken_neighbours(i, j, nb_rows, nb_cols);
+                if i == 1 && j == 0 {
+                    //dbg!(i, j, nb_taken);
+                }
                 match nb_taken {
                     0 => next_gen[i][j] = Pos::Taken,
-                    1 ..= 3 => {} ,
+                    1 ..= 4 => {} ,
                     _ => next_gen[i][j] = Pos::Empty,
                 }
             }
         }
+        //dbg!(&next_gen);
         next_gen
     }
 
     fn get_nb_taken_neighbours(&self, r: usize, c: usize, nb_rows: usize, nb_cols: usize) -> usize {
         let mut nb_taken = 0;
-        for i in -1..=1 {
-            if r == 0 && i == -1 { continue; }
-            if r == nb_rows - 1 && i == 1 { continue; }
 
-            for j in -1..=1 {
-                if i == 0 && j == 0 { continue; }
-                if c == 0 && j == -1 { continue; }
-                if c == nb_cols - 1 && j == 1 { continue; }
-                
-                let r_idx : usize = (r as i32 + i) as usize;
-                let c_idx : usize = (c as i32 + j) as usize;
-                if self[r_idx][c_idx] == Pos::Taken {
-                    nb_taken += 1; 
+        // up
+        if r > 0 {
+            for i in (0..r).rev() {
+                match self[i][c] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
                 }
             }
         }
+
+        // up left
+        if r > 0 && c > 0 {
+            for (i, j) in (0..r).rev().zip((0..c).rev()) {
+                match self[i][j] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+
+        // up right
+        if r > 0 && c < nb_cols {
+            for (i, j) in (0..r).rev().zip(c + 1..nb_cols) {
+                match self[i][j] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+
+        // down
+        if r < nb_rows {
+            for i in (r+1..nb_rows) {
+                match self[i][c] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+
+        // down left
+        if r < nb_rows && c > 0 { 
+            for (i, j) in (r+1..nb_rows).zip((0..c).rev()) {
+                match self[i][j] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+
+        // down right
+        if r < nb_rows && c < nb_cols {
+            for (i, j) in (r+1..nb_rows).zip((c + 1..nb_cols)) {
+                match self[i][j] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+        
+        // left
+        if c > 0 {
+            for j in (0..c).rev() {
+                match self[r][j] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+
+        // right
+        if c < nb_cols {
+            for j in (c + 1..nb_cols) {
+                match self[r][j] {
+                    Pos::Taken => { nb_taken += 1; break; },
+                    Pos::Empty => { break; },
+                    Pos::Floor => { continue; },
+                }
+            }
+        }
+
         nb_taken
     }
 }
@@ -91,15 +168,18 @@ fn char_to_seat(c : &char) -> Pos {
     }
 }
 
-fn solve_part_1(chairs: &Chairs) -> usize {
+fn solve_part_2(chairs: &Chairs) -> usize {
     let mut prev : Chairs = chairs.clone();
+    let mut max_cnt = 0;
     loop {
+        //if max_cnt == 2 { break; }
         let next = prev.step();
         if prev == next {
             prev = next;
             break;
         }
         prev = next;
+        max_cnt += 1;
     }
     prev.count(&Pos::Taken)
 }
@@ -113,13 +193,8 @@ fn main() -> io::Result<()> {
                                 .map(|line| line_to_seats(&line))
                                 .collect();
 
-    let result = solve_part_1(&chairs);
+    let result = solve_part_2(&chairs);
     println!("Result of part 1: {}", result);
-
-    /*
-    let result = solve_part_2(&numbers,);
-    println!("Result of part 2: {}", result);
-    */
 
     Ok(())
 }
