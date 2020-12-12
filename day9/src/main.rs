@@ -36,6 +36,29 @@ fn solve_part_1(nrs : &Vec<u64>, preamble_size : usize) -> u64 {
     work_num
 }
 
+fn solve_part_2(nrs : &Vec<u64>, bad : u64) -> u64 {
+    let mut queue : VecDeque<u64> = VecDeque::new();
+    let mut sum = 0;
+
+    for i in 0..nrs.len() {
+        let n = nrs[i];
+        sum = sum + n;
+        queue.push_back(n);
+
+        if sum == bad {
+            return queue.iter().min().unwrap() + queue.iter().max().unwrap();
+        }
+
+        while sum > bad {
+            if let Some(front) = queue.pop_front() {
+                sum -= front;
+            }
+        }
+    }
+
+    0
+}
+
 fn main() -> io::Result<()> {
     let file = File::open("/home/rutger/old_home/arch-rutger/Programming/advent_of_code_2020/input/day9.txt")?;
     let reader = BufReader::new(file);
@@ -47,6 +70,9 @@ fn main() -> io::Result<()> {
 
     let result = solve_part_1(&numbers, 25);
     println!("Result of part 1: {}", result);
+
+    let result2 = solve_part_2(&numbers, result);
+    println!("Result of part 2: {}", result2);
 
     Ok(())
 }
