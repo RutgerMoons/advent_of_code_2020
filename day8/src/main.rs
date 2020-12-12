@@ -10,11 +10,18 @@ enum Op {
     Nop(i32),
 }
 
+#[derive(Debug, PartialEq)]
+enum ConsoleState {
+    Running,
+    InfiniteLoop,
+    Finished,
+}
+
 #[derive(Debug)]
 struct Console {
     acc : i32,
     ip  : usize, // instruction pointer
-    instructions: Vec<Op>,
+    consoleState : ConsoleState,
 }
 
 impl Default for Console {
@@ -22,21 +29,20 @@ impl Default for Console {
         Console {
             acc : 0,
             ip : 0,
-            instructions: Vec::new(),
+            consoleState : ConsoleState::Running,
         }
     }
 }
 
 impl Console {
-    fn simulate(&mut self) {
-        let instr = &self.instructions[self.ip];
+    fn simulate_step(&mut self, instr : &Op) {
         match instr {
             Op::Acc(x) => {
                 self.acc += x;
                 self.ip += 1;
             },
             Op::Jmp(x) => {
-                let jump = *x + (self.ip as i32);
+                let jump = x + (self.ip as i32);
                 self.ip = jump as usize;
             }
             Op::Nop(_) => {
@@ -44,19 +50,29 @@ impl Console {
             }
         }
     }
+
+    fn simulate_program(&mut self, program : &Vec<Op>) {
+        let mut visited: HashSet<usize> = HashSet::new();
+
+        while self.consoleState == ConsoleState::Running {
+            let instr = &program[self.ip];
+            visited.insert(self.ip);
+            self.simulate_step(instr);
+
+            if self.ip >= program.len() {
+                self.consoleState = ConsoleState::Finished;
+            }
+
+            if visited.contains(&self.ip) {
+                self.consoleState = ConsoleState::InfiniteLoop;
+            }
+        }
+    }
 }
 
-fn solve_part_1(mut cons : Console) -> i32 {
-    let mut visited = HashSet::new();
-
-    loop {
-        if visited.contains(&cons.ip) {
-            return cons.acc;
-        }
-
-        visited.insert(cons.ip);
-        cons.simulate();
-    }
+fn solve_part_1(mut cons : Console, program: &Vec<Op>) -> i32 {
+    cons.simulate_program(program);
+    cons.acc
 }
 
 impl From<(&str, i32)> for Op {
@@ -86,11 +102,10 @@ fn main() -> io::Result<()> {
     }).collect();
 
     let cons = Console {
-        instructions : instructions,
         .. Default::default()
     };
 
-    let result = solve_part_1(cons);
+    let result = solve_part_1(cons, &instructions);
     println!("Part 1: {}", result);
 
     Ok(())
