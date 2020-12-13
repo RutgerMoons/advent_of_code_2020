@@ -69,18 +69,23 @@ struct Ship {
     x : i32,
     y : i32,
     dir : Direction,
+    wayx: i32,
+    wayy: i32,
 }
 
 impl Ship {
     fn move_ship(&mut self, instruction : &Instruction) {
         match instruction.instr {
-            Instr::North => self.y += instruction.amount,
-            Instr::South => self.y -= instruction.amount,
-            Instr::East => self.x += instruction.amount,
-            Instr::West => self.x -= instruction.amount,
+            Instr::North => self.wayy += instruction.amount,
+            Instr::South => self.wayy -= instruction.amount,
+            Instr::East => self.wayx += instruction.amount,
+            Instr::West => self.wayx -= instruction.amount,
             Instr::Left => self.rotate_left(instruction.amount),
             Instr::Right => self.rotate_right(instruction.amount),
-            Instr::Forward => self.move_ship( &Instruction {instr: self.dir.into(), amount: instruction.amount }),
+            Instr::Forward => {
+                self.x += instruction.amount * self.wayx;
+                self.y += instruction.amount * self.wayy;
+            },
         }
     }
 
@@ -91,10 +96,17 @@ impl Ship {
     fn rotate_right(&mut self, degrees: i32) {
         let times = degrees / 90;
         let mut new_dir = self.dir;
+        let mut new_wayx = self.wayx;
+        let mut new_wayy = self.wayy;
         for _ in 0..times {
             new_dir = new_dir.rotate_right();
+            let wayx_copy = new_wayx;
+            new_wayx = new_wayy;
+            new_wayy = - wayx_copy;
         }
         self.dir = new_dir;
+        self.wayx = new_wayx;
+        self.wayy = new_wayy;
     }
 }
 
@@ -104,11 +116,13 @@ impl Default for Ship {
             x: 0,
             y: 0,
             dir: Direction::East,
+            wayx: 10,
+            wayy: 1,
         }
     }
 }
 
-fn solve_part_1(route : &Vec<Instruction>) -> i32 {
+fn solve_part_2(route : &Vec<Instruction>) -> i32 {
     let mut ship = Ship::default();
     for instruction in route.iter() {
         ship.move_ship(instruction);
@@ -125,8 +139,8 @@ fn main() -> io::Result<()> {
                                 .map(|line| line.into())
                                 .collect();
 
-    let result = solve_part_1(&route);
-    println!("Result of part 1: {}", result);
+    let result = solve_part_2(&route);
+    println!("Result of part 2: {}", result);
 
     Ok(())
 }
