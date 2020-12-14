@@ -1,5 +1,7 @@
 use std::fs::File;
 use std::io::{self, prelude::*, BufReader};
+use ring_algorithm::chinese_remainder_theorem;
+
 
 fn solve_part_1(start: u64, busses: &Vec<u64>) -> u64 {
     let min: (u64, u64) = 
@@ -11,6 +13,11 @@ fn solve_part_1(start: u64, busses: &Vec<u64>) -> u64 {
     let wait_time = min.0 - start;
     let bus = min.1;
     wait_time * bus
+}
+
+fn solve_part_2(m: &Vec<i64>, c: &Vec<i64>) -> i64 {
+    dbg!(&m, &c);
+    chinese_remainder_theorem::<i64>(&c, &m).unwrap()
 }
 
 fn main() -> io::Result<()> {
@@ -29,6 +36,17 @@ fn main() -> io::Result<()> {
 
     let result = solve_part_1(start, &busses);
     println!("Result of part 1: {}", result);
+
+    let (results, moduli): (Vec<i64>, Vec<i64>) = 
+        lines[1].split(",")
+                .map(|x| -> std::result::Result<i64,_> { x.parse() }) // try to parse number or letter x
+                .enumerate()                                          // add index in front ( which will be result mod number )
+                .filter(|(_idx, parsed)| parsed.is_ok())              // filter those that are Ok()
+                .map(|(idx, parsed)| (idx as i64, parsed.unwrap()))   // unwrap the number
+                //.map(|(idx, modulus)| (modulus - idx, modulus))       // set correct congruence
+                .unzip();                                             // store first part and second part of tuples in 2 Vecs
+    let result = solve_part_2(&moduli, &results);
+    println!("Result of part 2: {}", result);
 
     Ok(())
 }
