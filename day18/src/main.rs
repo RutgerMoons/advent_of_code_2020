@@ -15,16 +15,20 @@ impl Operand {
             Operand::Plus => None,
             Operand::Times => None,
             Operand::List(l) => {
-                let mut result: i64 = l[0].solve().unwrap();
+                let mut result: i64 = 1;
+                let mut temp: i64 = l[0].solve().unwrap();
                 for w in l[1..].chunks(2) {
-                    let (op, num) = (&w[0], &w[1]);
+                    let (op, right) = (&w[0], &w[1]);
                     match op {
-                        Operand::Plus => result += num.solve().unwrap(),
-                        Operand::Times => result *= num.solve().unwrap(),
+                        Operand::Plus => temp += right.solve().unwrap(),
+                        Operand::Times => {
+                            result *= temp;
+                            temp = right.solve().unwrap()
+                        },
                         _ => unreachable!() ,
                     }
                 }
-                Some(result)
+                Some(result * temp)
             },
             Operand::Number(n) => Some(*n),
         }
@@ -100,42 +104,41 @@ fn main() -> io::Result<()> {
                                 .filter_map(|line| line.ok())
                                 .collect();
     let result = solve_part_1(&lines);
-    println!("Result of part 1 is {}", result);
+    println!("Result of part 2 is {}", result);
     Ok(())
 }
 
 #[cfg(test)]
 mod tests {
-    // Note this useful idiom: importing names from outer (for mod tests) scope.
     use super::*;
 
     #[test]
     fn test1() {
-        let op: Operand = "1 + 2 * 3 + 4 * 5 + 6".into();
-        assert_eq!(op.solve(), Some(71));
+        let op: Operand = "1 + (2 * 3) + (4 * (5 + 6))".into();
+        assert_eq!(op.solve(), Some(51));
     }
 
     #[test]
     fn test2() {
         let op: Operand = "2 * 3 + (4 * 5)".into();
-        assert_eq!(op.solve(), Some(26));
+        assert_eq!(op.solve(), Some(46));
     }
 
     #[test]
     fn test3() {
         let op: Operand = "5 + (8 * 3 + 9 + 3 * 4 * 3)".into();
-        assert_eq!(op.solve(), Some(437));
+        assert_eq!(op.solve(), Some(1_445));
     }
 
     #[test]
     fn test4() {
         let op: Operand = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))".into();
-        assert_eq!(op.solve(), Some(12240));
+        assert_eq!(op.solve(), Some(669_060));
     }
 
     #[test]
     fn test5() {
         let op: Operand = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2".into();
-        assert_eq!(op.solve(), Some(13632));
+        assert_eq!(op.solve(), Some(23_340));
     }
 }
