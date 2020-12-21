@@ -79,61 +79,117 @@ fn parse_input(input: &Vec<String>) -> (RuleMap, Vec<&String>) {
     (rules_map, cand)
 }
 
-fn produce_regex(rules: &RuleMap, start: usize) -> Regex {
+fn produce_regex(rules: &RuleMap, start: usize, mut mappie: &mut HashMap<usize, String>) -> Regex {
     let mut rule = rules.get(&start).unwrap();
     let mut regex_str = "^".to_string();
-    regex_str.push_str(&produce_regex_helper(&rules, &rule));
+    regex_str.push_str(&produce_regex_helper(&rules, &rule, 0, &mut mappie));
     regex_str.push('$');
-    dbg!(&regex_str);
 
     Regex::new(&regex_str).unwrap()
 }
 
-fn produce_regex_helper(rules: &RuleMap, start: &Rule) -> String {
+fn produce_regex_helper(rules: &RuleMap, start: &Rule, rule_idx: usize, mut mappie: &mut HashMap<usize, String>) -> String {
     let mut regex_str: String = "".to_string();
-    
     match start {
         Rule::Literal(c) => {
             regex_str.push_str(c.as_str());
         },
         Rule::List(l) => {
+            let mut matched = false;
+            regex_str.push_str("(?:");
             for el in l {
-                let piece: String = produce_regex_helper(&rules, rules.get(&el).unwrap());
+                if *el == rule_idx {
+                    regex_str.push_str(")+(?:");
+                    continue;
+                }
+                let piece: String = produce_regex_helper(&rules, rules.get(&el).unwrap(), *el, &mut mappie);
                 regex_str.push_str(&piece);
+            }
+            regex_str.push(')');
+            if matched {
+                regex_str.push('+');
             }
         },
         Rule::Or(left, right) => {
-            regex_str.push_str("(");
+            regex_str.push_str("(?:");
 
-            for piece in left.iter()
-                               .map(|el| produce_regex_helper(&rules, rules.get(&el).unwrap())) {
+            for el in left {
+                let piece: String = produce_regex_helper(&rules, rules.get(&el).unwrap(), *el, &mut mappie);
                 regex_str.push_str(&piece);
             }
 
-            regex_str.push_str("|");
+            regex_str.push_str("|(?:");
 
-            for piece in right.iter()
-                               .map(|el| produce_regex_helper(&rules, rules.get(&el).unwrap())) {
+            let mut matched = false;
+            for el in right {
+                if el == &rule_idx {
+                    matched = true;
+                    regex_str.push_str(")+(?:");
+                    continue;
+                }
+                let piece: String = produce_regex_helper(&rules, rules.get(&el).unwrap(), *el, &mut mappie);
                 regex_str.push_str(&piece);
+            }
+
+            if regex_str.chars().rev().next().unwrap() == ':' {
+                regex_str.pop();
+                regex_str.pop();
+                regex_str.pop();
+                matched = false;
+            } else {
+                regex_str.push(')');
+            }
+            if matched {
+                regex_str.push('+');
             }
 
             regex_str.push_str(")");
         },
     }
+    mappie.insert(rule_idx, regex_str.clone());
 
     regex_str
 }
 
 fn solve_part_1(input: &Vec<String>) -> usize {
     let (rules, candidates): (RuleMap, Vec<&String>) = parse_input(&input);
-    let regex: Regex = produce_regex(&rules, 0);
+    let mut mappie: HashMap<usize, String> = HashMap::new();
+    let regex: Regex = produce_regex(&rules, 0, &mut mappie);
+    let mut test_regex: String = "^((?:".to_string();
+    test_regex.push_str(&mappie.get(&42).unwrap().to_string());
+    test_regex.push_str(")+)((?:");
+    test_regex.push_str(&mappie.get(&31).unwrap().to_string());
+    test_regex.push_str(")+)$");
+    let str_42 = mappie.get(&42).unwrap();
+    let re_42 = Regex::new(&str_42).unwrap();
+    let str_31 = mappie.get(&31).unwrap();
+    let re_31 = Regex::new(&str_31).unwrap();
+    let re_test = Regex::new(&test_regex).unwrap();
 
-    candidates.iter()
-              .filter(|cand| regex.is_match(&cand))
-              .count()
+    let mut total = 0;
+    for cand in candidates.iter()
+                          .filter(|c| re_test.is_match(&c))
+                          .map(|c| c.to_string()) {
+                           
+        for cap in re_test.captures_iter(&cand) {
+            let left = &cap[1].to_string();
+            let right = &cap[2].to_string();
+            let mut nb_42 = re_42.find_iter(&left).count();
+            let mut nb_31 = re_31.find_iter(&right).count();
+            if nb_42 > nb_31 && nb_31 > 0 {
+                total += 1;
+            }
+            break;
+        }
+    }
+    
+    total
 }
+// CYK parser dan maar?
 
 fn main() -> io::Result<()> {
+    //let file = File::open("/home/rutger/old_home/arch-rutger/Programming/advent_of_code_2020/input/day19_demo_4.txt")?;
+    //let file = File::open("/home/rutger/old_home/arch-rutger/Programming/advent_of_code_2020/input/day19_demo_3.txt")?;
     let file = File::open("/home/rutger/old_home/arch-rutger/Programming/advent_of_code_2020/input/day19.txt")?;
     let reader = BufReader::new(file);
 
