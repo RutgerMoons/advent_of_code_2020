@@ -2,6 +2,7 @@ use std::fs::File;
 use std::io::{self, prelude::*, BufReader};
 use regex::Regex;
 use std::collections::HashMap;
+use std::collections::HashSet;
 
 enum Dir {
     E,
@@ -13,13 +14,13 @@ enum Dir {
 }
 
 type Path = Vec<Dir>;
-type Coord = (u64, u64);
+type Coord = (i64, i64);
 
-fn solve_part_1(paths: &Vec<Path>) -> usize {
+fn solve_part_1(paths: &Vec<Path>) -> HashMap<Coord, u64> {
     let mut map: HashMap<Coord, u64> = HashMap::new(); 
     for path in paths {
-        let mut x = 1_000_000;
-        let mut y = 1_000_000;
+        let mut x = 0;
+        let mut y = 0;
 
         for d in path {
             match d {
@@ -34,8 +35,48 @@ fn solve_part_1(paths: &Vec<Path>) -> usize {
 
         *map.entry((x, y)).or_insert(0) += 1;
     }
-    
-    map.values().filter(|v| *v % 2 == 1).count()
+    map
+}
+
+fn solve_part_2(input_coords: &HashMap<Coord, u64>) -> usize {
+    let mut coords: HashSet<Coord> = input_coords.iter()
+                                             .filter(|(_, val)| *val % 2 == 1)  // black pairs
+                                             .map(|((x, y), _)| (*x, *y))       // only the coord
+                                             .collect();
+    for i in 0..100 {
+        let mut new_map: HashMap<Coord, u64> = HashMap::new();
+        for coord in coords.iter() {
+            // dereference
+            let (x, y) = *coord;
+
+            // neighbors + 1
+            *new_map.entry((x + 2, y)).or_insert(0) += 1;
+            *new_map.entry((x - 2, y)).or_insert(0) += 1;
+            *new_map.entry((x + 1, y + 1)).or_insert(0) += 1;
+            *new_map.entry((x + 1, y - 1)).or_insert(0) += 1;
+            *new_map.entry((x - 1, y + 1)).or_insert(0) += 1;
+            *new_map.entry((x - 1, y - 1)).or_insert(0) += 1;
+        }
+        let mut new_coords = HashSet::new();
+
+        for (coord, ctr) in new_map {
+            // black
+            if coords.contains(&coord) {
+                // stays black
+                if ctr > 0 && ctr < 3 {
+                    new_coords.insert(coord.clone());
+                }
+            }
+            else {
+                // white flips to black
+                if ctr == 2 {
+                    new_coords.insert(coord.clone());
+                }
+            }
+        }
+        coords = new_coords;
+    }
+    coords.len()
 }
 
 fn main() -> io::Result<()> {
@@ -64,8 +105,11 @@ fn main() -> io::Result<()> {
         tile_directions.push(path);
     }
 
-    let result = solve_part_1(&tile_directions);
+    let map = solve_part_1(&tile_directions);
+    let result = map.values().filter(|v| *v % 2 == 1).count();
     println!("Result of part 1 is {}", result);
 
+    let result = solve_part_2(&map);
+    println!("Result of part 2 is {}", result);
     Ok(())
 }
